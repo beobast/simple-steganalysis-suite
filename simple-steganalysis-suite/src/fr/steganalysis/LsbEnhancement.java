@@ -50,6 +50,23 @@ public class LsbEnhancement {
 		}
 		else blue = 0;
 		
+		/*if((red & 0x03) == 0) red = 0;
+		else if ((red & 0x03) == 1) red = 85;
+		else if ((red & 0x03) == 2) red = 170;
+		else red = 255;
+		if((green & 0x03) == 0) green = 0;
+		else if ((green & 0x03) == 1) green = 85;
+		else if ((green & 0x03) == 2) green = 170;
+		else green = 255;
+		if((blue & 0x03) == 0) blue = 0;
+		else if ((blue & 0x03) == 1) blue = 85;
+		else if ((blue & 0x03) == 2) blue = 170;
+		else blue = 255;*/
+		
+		/*red = (red & 0x03) << 6;
+		green = (green & 0x03) << 6;
+		blue = (blue & 0x03) << 6;*/
+		
 		Color result = new Color(red, green, blue);
 		return result;
 		
