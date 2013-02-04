@@ -21,10 +21,6 @@ public class ChiSquare {
 		for(int i=0; i<values.length; i++)
 		{
 			values[i] = 1;
-		}
-		
-		for(int i=0; i<x.length; i++)
-		{
 			x[i] = i;
 		}
 
@@ -115,10 +111,6 @@ public class ChiSquare {
 		for(int i=0; i<values.length; i++)
 		{
 			values[i] = 1;
-		}
-		
-		for(int i=0; i<x.length; i++)
-		{
 			x[i] = i;
 		}
 
@@ -209,10 +201,6 @@ public class ChiSquare {
 		for(int i=0; i<values.length; i++)
 		{
 			values[i] = 1;
-		}
-		
-		for(int i=0; i<x.length; i++)
-		{
 			x[i] = i;
 		}
 
@@ -303,10 +291,6 @@ public class ChiSquare {
 		for(int i=0; i<values.length; i++)
 		{
 			values[i] = 1;
-		}
-		
-		for(int i=0; i<x.length; i++)
-		{
 			x[i] = i;
 		}
 

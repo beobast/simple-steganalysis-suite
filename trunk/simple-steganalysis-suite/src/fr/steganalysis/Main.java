@@ -1,6 +1,8 @@
 package fr.steganalysis;
 import java.awt.Dimension;
 import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.Frame;
 import java.awt.Toolkit;
 
 import javax.swing.JFrame;
@@ -19,9 +21,8 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.util.Enumeration;
 
-import javax.swing.JPanel;
-
 import org.math.plot.Plot2DPanel;
+import org.math.plot.plotObjects.BaseLabel;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -38,10 +39,8 @@ public class Main {
 	private BufferedImage image;
 	private ImagePanel imagePanel;
 	private ImagePanel resultImagePanel;
-	private Plot2DPanel averageLsbPanel;
-	
-	private int width = 1024;
-	private int height = 768;
+	private Plot2DPanel chiSquarePanel;
+	private Plot2DPanel neighboursPanel;
 
 	/**
 	 * Launch the application.
@@ -104,7 +103,8 @@ public class Main {
             return;
         }
         imagePanel.setImage(image);
-        frmSteganalysis.pack();
+        imagePanel.setVisible(true);
+        //frmSteganalysis.pack();
 	}
 
 	/**
@@ -114,9 +114,9 @@ public class Main {
 		
 		/* Main frame */
 		frmSteganalysis = new JFrame();
-		frmSteganalysis.setTitle("Simple Steganalysis Suite");
-		frmSteganalysis.setResizable(false);
-		frmSteganalysis.setBounds(100, 100, 450, 387);
+		frmSteganalysis.setTitle("Simple Steganalysis Suite");		
+		frmSteganalysis.setMinimumSize(new Dimension(400,400));
+		frmSteganalysis.setExtendedState(Frame.MAXIMIZED_BOTH);
 		frmSteganalysis.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmSteganalysis.getContentPane().setLayout(new BorderLayout(0, 0));
 		
@@ -126,20 +126,18 @@ public class Main {
 		/* Panels */
 		imagePanel = new ImagePanel();		
 		JScrollPane scroller = new JScrollPane(imagePanel);
-		scroller.setPreferredSize(new Dimension(width, height));
 		tabbedPane.addTab("Image", scroller);
 		
 		resultImagePanel = new ImagePanel();		
 		JScrollPane scroller2 = new JScrollPane(resultImagePanel);
-		scroller2.setPreferredSize(new Dimension(width, height));		
 		tabbedPane.addTab("LSB Enhancement", scroller2);
 		
-		JPanel resultPanel = new JPanel();
-		tabbedPane.addTab("Result", null, resultPanel, null);
-		resultPanel.setLayout(new BorderLayout(0, 0));
+		chiSquarePanel = new Plot2DPanel();
 		
-		averageLsbPanel = new Plot2DPanel();
-		resultPanel.add(averageLsbPanel);
+		neighboursPanel = new Plot2DPanel();
+		
+		tabbedPane.addTab("Chi-Square", null, chiSquarePanel, null);		
+		tabbedPane.addTab("Neighbours", null, neighboursPanel, null);
 
 		/* Menu */
 		JMenuBar menuBar = new JMenuBar();
@@ -161,17 +159,20 @@ public class Main {
 		JMenuItem mntmLsbEnhancement = new JMenuItem("LSB enhancement");
 		mnAttack.add(mntmLsbEnhancement);
 		
+		JMenuItem mntmPixelValue = new JMenuItem("Pixel Value");
+		mnAttack.add(mntmPixelValue);
+		
 		JSeparator separator = new JSeparator();
 		mnAttack.add(separator);
 		
 		JLabel lblStatisticalAttacks = new JLabel("Statistical");
 		mnAttack.add(lblStatisticalAttacks);
 		
-		JMenuItem mntmAverageLsb = new JMenuItem("Average LSB");
-		mnAttack.add(mntmAverageLsb);
-		
 		JMenuItem mntmChisquare = new JMenuItem("Chi-Square");
 		mnAttack.add(mntmChisquare);
+		
+		JMenuItem mntmNeighborHistogram = new JMenuItem("Neighbor Histogram");
+		mnAttack.add(mntmNeighborHistogram);
 		
 		JMenu mnOptions = new JMenu("Options");
 		menuBar.add(mnOptions);
@@ -180,8 +181,8 @@ public class Main {
 		
 		final ButtonGroup groupOrientation = new ButtonGroup();		
 		
-		JLabel lblStatistical = new JLabel("Statistical");
-		mnOptions.add(lblStatistical);
+		JLabel lblChiSquare = new JLabel("Chi-Square");
+		mnOptions.add(lblChiSquare);
 		
 		JMenu mnBlockSize = new JMenu("Block size");
 		mnOptions.add(mnBlockSize);
@@ -249,23 +250,10 @@ public class Main {
 			}
 		});
 		
-		mntmAverageLsb.addMouseListener(new MouseAdapter() {
+		mntmPixelValue.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseReleased(MouseEvent arg0) {
-				String orientation = getSelection(groupOrientation).getText();
-				int size = Integer.parseInt(getSelection(groupBlockSize).getText());
-				int nbBlocks = ((3*image.getWidth()*image.getHeight())/size) - 1;
-				double[] x = new double[nbBlocks];
-				double[] y = new double[nbBlocks];	
-				
-				if(orientation.equals("Top to Bottom")) AverageLsb.averageLsbAttackTopToBottom(image, x, y, size);
-				else if(orientation.equals("Left to Right")) AverageLsb.averageLsbAttackLeftToRight(image, x, y, size);
-				else if(orientation.equals("Bottom to Top")) AverageLsb.averageLsbAttackBottomToTop(image, x, y, size);
-				else AverageLsb.averageLsbAttackRightToLeft(image, x, y, size);
-				
-				averageLsbPanel.removeAllPlots();
-				averageLsbPanel.addScatterPlot("Average LSB", x, y);
-				averageLsbPanel.addLegend("EAST");
+				resultImagePanel.setImage(PixelValue.pixelValueAttack(image));
 			}
 		});
 		
@@ -277,14 +265,55 @@ public class Main {
 				int nbBlocks = ((3*image.getWidth()*image.getHeight())/size) - 1;
 				double[] x = new double[nbBlocks];
 				double[] chi = new double[nbBlocks];
+				double[] averageLSB = new double[nbBlocks];
 				
-				if(orientation.equals("Top to Bottom")) ChiSquare.chiSquareAttackTopToBottom(image, x, chi, size);
-				else if(orientation.equals("Left to Right")) ChiSquare.chiSquareAttackLeftToRight(image, x, chi, size);
-				else if(orientation.equals("Bottom to Top")) ChiSquare.chiSquareAttackBottomToTop(image, x, chi, size);
-				else ChiSquare.chiSquareAttackRightToLeft(image, x, chi, size);
+				if(orientation.equals("Top to Bottom"))
+				{
+					AverageLsb.averageLsbAttackTopToBottom(image, x, averageLSB, size);
+					ChiSquare.chiSquareAttackTopToBottom(image, x, chi, size);
+				}
+				else if(orientation.equals("Left to Right"))
+				{
+					AverageLsb.averageLsbAttackLeftToRight(image, x, averageLSB, size);
+					ChiSquare.chiSquareAttackLeftToRight(image, x, chi, size);
+				}
+				else if(orientation.equals("Bottom to Top")) 
+				{
+					AverageLsb.averageLsbAttackBottomToTop(image, x, averageLSB, size);
+					ChiSquare.chiSquareAttackBottomToTop(image, x, chi, size);
+				}
+				else 
+				{
+					AverageLsb.averageLsbAttackRightToLeft(image, x, averageLSB, size);
+					ChiSquare.chiSquareAttackRightToLeft(image, x, chi, size);
+				}
 				
-				averageLsbPanel.addLinePlot("Chi-Square", x, chi);
-				averageLsbPanel.addLegend("EAST");
+				chiSquarePanel.removeAllPlots();
+				chiSquarePanel.addScatterPlot("Average LSB", x, averageLSB);
+				BaseLabel title = new BaseLabel("Chi-Square and Average LSB",null, 0.5, 1.1);
+				title.setFont(new Font("Courier", Font.BOLD, 20));
+				chiSquarePanel.addPlotable(title);
+				chiSquarePanel.addLinePlot("Chi-Square", x, chi);
+				chiSquarePanel.addLegend("EAST");
+				chiSquarePanel.setAxisLabel(0, size+"-byte data block");
+				chiSquarePanel.setAxisLabel(1, "Average LSB value (blue)\np-value of Chi-Square test (red)");
+			}
+		});
+		
+		mntmNeighborHistogram.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseReleased(MouseEvent arg0) {
+				double[] x = new double[27];
+				double[] y = new double[27];
+				NeighborHistogram.neighborHistogramAttack(image, x, y);
+				neighboursPanel.removeAllPlots();
+				neighboursPanel.addBarPlot("Neighbor", x, y);
+				neighboursPanel.addLegend("SOUTH");
+				neighboursPanel.setAxisLabel(0, "Neighbours");
+				neighboursPanel.setAxisLabel(1, "Frequency");
+				BaseLabel title = new BaseLabel("Neighbours Histogram",null, 0.5, 1.1);
+				title.setFont(new Font("Courier", Font.BOLD, 20));
+				neighboursPanel.addPlotable(title);	
 			}
 		});
 			
