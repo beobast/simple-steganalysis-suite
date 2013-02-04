@@ -91,7 +91,9 @@ public class ImagePanel extends JComponent
         Dimension size = getSize();
         g.clearRect(0, 0, size.width, size.height);
         if(panelImage != null) {
-            g.drawImage(panelImage, 0, 0, null);
+        	int x = (this.getWidth() - panelImage.getWidth(null)) / 2;
+            int y = (this.getHeight() - panelImage.getHeight(null)) / 2;
+            g.drawImage(panelImage, x, y, null);
         }
     }
 }
