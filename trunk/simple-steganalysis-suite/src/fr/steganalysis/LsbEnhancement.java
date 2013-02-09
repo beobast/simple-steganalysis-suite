@@ -33,7 +33,7 @@ public class LsbEnhancement {
 			green = 0;
 			blue = 255;
 		}*/
-		
+
 		if((red & 0x01) == 1)
 		{
 			red = 255;

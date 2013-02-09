@@ -41,6 +41,7 @@ public class Main {
 	private ImagePanel resultImagePanel;
 	private Plot2DPanel chiSquarePanel;
 	private Plot2DPanel neighboursPanel;
+	private Plot2DPanel differenceHistogram;
 
 	/**
 	 * Launch the application.
@@ -132,12 +133,13 @@ public class Main {
 		JScrollPane scroller2 = new JScrollPane(resultImagePanel);
 		tabbedPane.addTab("LSB Enhancement", scroller2);
 		
-		chiSquarePanel = new Plot2DPanel();
-		
+		chiSquarePanel = new Plot2DPanel();	
 		neighboursPanel = new Plot2DPanel();
+		differenceHistogram = new Plot2DPanel();
 		
 		tabbedPane.addTab("Chi-Square", null, chiSquarePanel, null);		
 		tabbedPane.addTab("Neighbours", null, neighboursPanel, null);
+		tabbedPane.addTab("Pixel Difference Histogram", null, differenceHistogram, null);
 
 		/* Menu */
 		JMenuBar menuBar = new JMenuBar();
@@ -173,6 +175,9 @@ public class Main {
 		
 		JMenuItem mntmNeighborHistogram = new JMenuItem("Neighbor Histogram");
 		mnAttack.add(mntmNeighborHistogram);
+		
+		JMenuItem mntmPixelDifferenceHistogram = new JMenuItem("Pixel Difference Histogram");
+		mnAttack.add(mntmPixelDifferenceHistogram);
 		
 		JMenu mnOptions = new JMenu("Options");
 		menuBar.add(mnOptions);
@@ -314,6 +319,21 @@ public class Main {
 				BaseLabel title = new BaseLabel("Neighbours Histogram",null, 0.5, 1.1);
 				title.setFont(new Font("Courier", Font.BOLD, 20));
 				neighboursPanel.addPlotable(title);	
+			}
+		});
+		
+		mntmPixelDifferenceHistogram.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseReleased(MouseEvent arg0) {
+				double[] x = new double[511];
+				double[] r = new double[511];
+				double[] g = new double[511];
+				double[] b = new double[511];
+				PixelDifferenceHistogram.histogram(image, x, r/*, g, b*/);
+				differenceHistogram.removeAllPlots();
+				differenceHistogram.addBarPlot("Red", x, r);
+				/*differenceHistogram.addBarPlot("Green", x, g);
+				differenceHistogram.addBarPlot("Blue", x, b);*/
 			}
 		});
 			
