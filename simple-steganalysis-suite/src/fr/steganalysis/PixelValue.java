@@ -25,9 +25,23 @@ public class PixelValue {
 			}
 		}
 		
-		red *= 8;
+		if(red > 50) red = 255;
+		else if(red > 20) red = 150;
+		else if(red > 4) red = 80;
+		else red = 0;
+		
+		if(green > 50) green = 255;
+		else if(green > 20)  green = 150;
+		else if(green > 4) green = 80;
+		else green = 0;
+		
+		if(blue > 50) blue = 255;
+		else if(blue > 20) blue = 150;
+		else if(blue > 4) blue = 80;
+		else blue = 0;
+		/*red *= 8;
 		green *= 8;
-		blue *= 8;
+		blue *= 8;*/
 		
 		/*if(red > 600)
 		{
@@ -43,12 +57,12 @@ public class PixelValue {
 			blue = 0;
 		}*/
 		
-		if(red > 255) red = 255;
+		/*if(red > 255) red = 255;
 		if(red < 0) red = 0;
 		if(green > 255) green = 255;
 		if(green < 0) green = 0;
 		if(blue > 255) blue = 255;
-		if(blue < 0) blue = 0;
+		if(blue < 0) blue = 0;*/
 		
 		
 		Color result = new Color(red, green, blue);
