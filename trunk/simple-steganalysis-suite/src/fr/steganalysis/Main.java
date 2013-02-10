@@ -173,11 +173,17 @@ public class Main {
 		JMenuItem mntmChisquare = new JMenuItem("Chi-Square");
 		mnAttack.add(mntmChisquare);
 		
+		JMenuItem mntmDifferenceHistogram = new JMenuItem("Difference Histogram");
+		mnAttack.add(mntmDifferenceHistogram);
+		
+		JMenu mnHistograms = new JMenu("Histograms");
+		menuBar.add(mnHistograms);
+		
 		JMenuItem mntmNeighborHistogram = new JMenuItem("Neighbor Histogram");
-		mnAttack.add(mntmNeighborHistogram);
+		mnHistograms.add(mntmNeighborHistogram);
 		
 		JMenuItem mntmPixelDifferenceHistogram = new JMenuItem("Pixel Difference Histogram");
-		mnAttack.add(mntmPixelDifferenceHistogram);
+		mnHistograms.add(mntmPixelDifferenceHistogram);
 		
 		JMenu mnOptions = new JMenu("Options");
 		menuBar.add(mnOptions);
@@ -305,20 +311,11 @@ public class Main {
 			}
 		});
 		
-		mntmNeighborHistogram.addMouseListener(new MouseAdapter() {
+		mntmDifferenceHistogram.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseReleased(MouseEvent arg0) {
-				double[] x = new double[27];
-				double[] y = new double[27];
-				NeighborHistogram.neighborHistogramAttack(image, x, y);
-				neighboursPanel.removeAllPlots();
-				neighboursPanel.addBarPlot("Neighbor", x, y);
-				neighboursPanel.addLegend("SOUTH");
-				neighboursPanel.setAxisLabel(0, "Neighbours");
-				neighboursPanel.setAxisLabel(1, "Frequency");
-				BaseLabel title = new BaseLabel("Neighbours Histogram",null, 0.5, 1.1);
-				title.setFont(new Font("Courier", Font.BOLD, 20));
-				neighboursPanel.addPlotable(title);	
+				DifferenceHistogramAttack d = new DifferenceHistogramAttack(image);
+				d.test();
 			}
 		});
 		
@@ -334,6 +331,23 @@ public class Main {
 				differenceHistogram.addBarPlot("Red", x, r);
 				/*differenceHistogram.addBarPlot("Green", x, g);
 				differenceHistogram.addBarPlot("Blue", x, b);*/
+			}
+		});
+		
+		mntmNeighborHistogram.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseReleased(MouseEvent arg0) {
+				double[] x = new double[27];
+				double[] y = new double[27];
+				NeighborHistogram.neighborHistogramAttack(image, x, y);
+				neighboursPanel.removeAllPlots();
+				neighboursPanel.addBarPlot("Neighbor", x, y);
+				neighboursPanel.addLegend("SOUTH");
+				neighboursPanel.setAxisLabel(0, "Neighbours");
+				neighboursPanel.setAxisLabel(1, "Frequency");
+				BaseLabel title = new BaseLabel("Neighbours Histogram",null, 0.5, 1.1);
+				title.setFont(new Font("Courier", Font.BOLD, 20));
+				neighboursPanel.addPlotable(title);	
 			}
 		});
 			

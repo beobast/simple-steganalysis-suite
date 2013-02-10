@@ -1,3 +1,8 @@
+/*
+ * This is an idea I had about neighbour pixels value difference
+ * Need to be improved
+ */
+
 package fr.steganalysis;
 import java.awt.Color;
 import java.awt.image.BufferedImage;
@@ -39,31 +44,6 @@ public class PixelValue {
 		else if(blue > 20) blue = 150;
 		else if(blue > 4) blue = 80;
 		else blue = 0;
-		/*red *= 8;
-		green *= 8;
-		blue *= 8;*/
-		
-		/*if(red > 600)
-		{
-			red = 255;
-			green = 255;
-			blue = 0;
-		}
-		
-		if(red < 40)
-		{
-			red =0 ;
-			green = 0;
-			blue = 0;
-		}*/
-		
-		/*if(red > 255) red = 255;
-		if(red < 0) red = 0;
-		if(green > 255) green = 255;
-		if(green < 0) green = 0;
-		if(blue > 255) blue = 255;
-		if(blue < 0) blue = 0;*/
-		
 		
 		Color result = new Color(red, green, blue);
 		return result;		

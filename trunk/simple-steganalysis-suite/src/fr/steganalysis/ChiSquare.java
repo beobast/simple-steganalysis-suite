@@ -1,3 +1,15 @@
+/*
+ * The famous Chi-Square attack on PoV, described in :
+ * Attacks on Steganographic Systems
+ * Andreas Westfeld and Andreas Pfitzmann
+ * 
+ * Only works for sequential embedding 
+ * 
+ * More info :
+ * http://www.guillermito2.net/stegano/tools/index.html
+ * http://cuneytcaliskan.blogspot.fr/2011/12/steganalysis-chi-square-attack-lsb.html
+ */
+
 package fr.steganalysis;
 import java.awt.Color;
 import java.awt.image.BufferedImage;
