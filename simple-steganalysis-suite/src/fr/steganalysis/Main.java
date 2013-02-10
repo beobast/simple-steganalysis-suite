@@ -323,14 +323,10 @@ public class Main {
 			@Override
 			public void mouseReleased(MouseEvent arg0) {
 				double[] x = new double[511];
-				double[] r = new double[511];
-				double[] g = new double[511];
-				double[] b = new double[511];
-				PixelDifferenceHistogram.histogram(image, x, r/*, g, b*/);
+				double[] y = new double[511];
+				PixelDifferenceHistogram.histogram(image, x, y);
 				differenceHistogram.removeAllPlots();
-				differenceHistogram.addBarPlot("Red", x, r);
-				/*differenceHistogram.addBarPlot("Green", x, g);
-				differenceHistogram.addBarPlot("Blue", x, b);*/
+				differenceHistogram.addBarPlot("Pixel Difference Histogram", x, y);
 			}
 		});
 		
@@ -339,13 +335,13 @@ public class Main {
 			public void mouseReleased(MouseEvent arg0) {
 				double[] x = new double[27];
 				double[] y = new double[27];
-				NeighborHistogram.neighborHistogramAttack(image, x, y);
+				NeighbourhoodHistogram.neighborHistogramAttack(image, x, y);
 				neighboursPanel.removeAllPlots();
-				neighboursPanel.addBarPlot("Neighbor", x, y);
+				neighboursPanel.addBarPlot("Neighbourhood Histogram", x, y);
 				neighboursPanel.addLegend("SOUTH");
 				neighboursPanel.setAxisLabel(0, "Neighbours");
 				neighboursPanel.setAxisLabel(1, "Frequency");
-				BaseLabel title = new BaseLabel("Neighbours Histogram",null, 0.5, 1.1);
+				BaseLabel title = new BaseLabel("Neighbourhood Histogram",null, 0.5, 1.1);
 				title.setFont(new Font("Courier", Font.BOLD, 20));
 				neighboursPanel.addPlotable(title);	
 			}

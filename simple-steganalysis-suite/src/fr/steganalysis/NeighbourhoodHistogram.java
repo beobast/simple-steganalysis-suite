@@ -13,7 +13,7 @@ import java.awt.Color;
 import java.awt.image.BufferedImage;
 import java.util.TreeSet;
 
-public class NeighborHistogram{
+public class NeighbourhoodHistogram{
 	
 	private static class Node implements Comparable<Node>{
 		int red, green, blue;
