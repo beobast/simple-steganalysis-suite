@@ -1,3 +1,12 @@
+/*
+ * This class implements neighbourhood histogram attack used to break "Hide" software
+ * The details can be found in :
+ * 
+ * Detecting Low Embedding Rates
+ * Andreas Westfeld
+ * 
+ */
+
 package fr.steganalysis;
 
 import java.awt.Color;

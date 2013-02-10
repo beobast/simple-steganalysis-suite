@@ -1,3 +1,11 @@
+/*
+ *  Just compute the average LSB value (between 0 and 1) in a block of 'size' bytes
+ *  Used with the Chi-Square test
+ *  
+ *  More info :
+ *  http://www.guillermito2.net/stegano/tools/index.html
+ */
+
 package fr.steganalysis;
 import java.awt.Color;
 import java.awt.image.BufferedImage;
@@ -5,22 +13,6 @@ import java.awt.image.BufferedImage;
 
 public class AverageLsb {
 
-	/**
-	 * Returns an Image object that can then be painted on the screen. 
-	 * The url argument must specify an absolute {@link URL}. The name
-	 * argument is a specifier that is relative to the url argument. 
-	 * <p>
-	 * This method always returns immediately, whether or not the 
-	 * image exists. When this applet attempts to draw the image on
-	 * the screen, the data will be loaded. The graphics primitives 
-	 * that draw the image will incrementally paint on the screen. 
-	 *
-	 * @param  image	a BufferedImage to analyze
-	 * @param  x	  	the location of the image, relative to the url argument
-	 * @param  average	  	the location of the image, relative to the url argument
-	 * @param  size
-	 * @return void
-	 */
 	public static void averageLsbAttackTopToBottom(BufferedImage image, double[] x, double[] average, int size)
 	{
 		int width = image.getWidth();

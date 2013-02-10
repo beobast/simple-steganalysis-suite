@@ -1,3 +1,7 @@
+/*
+ * Simple pixel difference histogram
+ */
+
 package fr.steganalysis;
 
 import java.awt.Color;
@@ -5,7 +9,7 @@ import java.awt.image.BufferedImage;
 
 public class PixelDifferenceHistogram {
 	
-	public static void histogram(BufferedImage image, double[] x, double[] r/*, double[] g, double[] b*/)
+	public static void histogram(BufferedImage image, double[] x, double[] y)
 	{
 		int width = image.getWidth();
 		int height = image.getHeight();
@@ -36,9 +40,9 @@ public class PixelDifferenceHistogram {
 					greenDiff = green - green2;
 					blueDiff = blue - blue2;
 					
-					r[redDiff + 255]++;
-					r[greenDiff + 255]++;
-					r[blueDiff + 255]++;
+					y[redDiff + 255]++;
+					y[greenDiff + 255]++;
+					y[blueDiff + 255]++;
 				}
 			}
 		}
