@@ -20,4 +20,4 @@ Just extract the LSB of each pixel (or LSB of red, green and blue value for RGB 
  * If LSB = 0 then set pixel value to 0
  
 
-Lena512.jpg
+http://code.google.com/p/simple-steganalysis-suite/source/browse/wiki/lena512.jpg
