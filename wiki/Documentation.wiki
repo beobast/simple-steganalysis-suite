@@ -14,10 +14,10 @@ The most famous visual attack, described in :
 
 _Attacks on Steganographic Systems_
 _Andreas Westfeld and Andreas Pfitzmann_
- 
+
 Just extract the LSB of each pixel
 (or LSB of red, green and blue value for RGB images).
 
-If LSB = 1 then set pixel value to 255
-If LSB = 0 then set pixel value to 0
+ * If LSB = 1 then set pixel value to 255
+ * If LSB = 0 then set pixel value to 0
  
