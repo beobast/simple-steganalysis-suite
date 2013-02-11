@@ -2,7 +2,7 @@
 
 = Introduction =
 
-The program only handle one image at a time.
+The program handles only one image at a time.
 First open an image by clicking "File -> Open Image"
 
 
@@ -18,3 +18,17 @@ Just extract the LSB of each pixel (or LSB of red, green and blue value for RGB 
 
  * If LSB = 1 then set pixel value to 255
  * If LSB = 0 then set pixel value to 0
+
+== Chi-Square Attack ==
+
+The most famous statistical attack, described in :
+
+_Attacks on Steganographic Systems by Andreas Westfeld and Andreas Pfitzmann_
+
+== Neighbourhood Histogram ==
+
+
+== Pixel Difference Histogram ==
+
+
+== Primary Sets ==
