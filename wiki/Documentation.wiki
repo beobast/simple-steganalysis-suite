@@ -19,6 +19,8 @@ Just extract the LSB of each pixel (or LSB of red, green and blue value for RGB 
  * If LSB = 1 then set pixel value to 255
  * If LSB = 0 then set pixel value to 0
 
+http://simple-steganalysis-suite.googlecode.com/svn/wiki/lena512.jpg
+
 == Chi-Square Attack ==
 
 The most famous statistical attack, described in :
