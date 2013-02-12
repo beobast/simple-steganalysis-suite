@@ -16,8 +16,8 @@ _Attacks on Steganographic Systems by Andreas Westfeld and Andreas Pfitzmann_
 
 Just extract the LSB of each pixel (or LSB of red, green and blue value for RGB images).
 
- * If LSB = 1 then set pixel value to 255
- * If LSB = 0 then set pixel value to 0
+ * If LSB = 1 then set pixel (or color value) to 255
+ * If LSB = 0 then set pixel (or color value) to 0
 
 http://simple-steganalysis-suite.googlecode.com/svn/wiki/images/lena512.jpg
 Stego image
@@ -30,6 +30,8 @@ LSB Enhancement result
 The most famous statistical attack, described in :
 
 _Attacks on Steganographic Systems by Andreas Westfeld and Andreas Pfitzmann_
+
+http://simple-steganalysis-suite.googlecode.com/svn/wiki/images/chiSquare.png
 
 == Neighbourhood Histogram ==
 
