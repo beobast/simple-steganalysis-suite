@@ -12,7 +12,7 @@ First open an image by clicking "File -> Open Image"
 
 The most famous visual attack, described in :
 
-_Attacks on Steganographic Systems by Andreas Westfeld and Andreas Pfitzmann_
+[http://simple-steganalysis-suite.googlecode.com/svn/wiki/articles/Attacks on Steganographic Systems.pdf _Attacks on Steganographic Systems by Andreas Westfeld and Andreas Pfitzmann_]
 
 Just extract the LSB of each pixel (or LSB of red, green and blue value for RGB images).
 
