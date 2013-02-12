@@ -35,7 +35,7 @@ _Attacks on Steganographic Systems by Andreas Westfeld and Andreas Pfitzmann_
 
 http://simple-steganalysis-suite.googlecode.com/svn/wiki/images/lsbEnhancement.png
 
-(left) Stego image  (right) LSB Enhancement result
+Stego image(left)and LSB Enhancement result (right)
 
 http://simple-steganalysis-suite.googlecode.com/svn/wiki/images/chiSquare.png
 
@@ -47,7 +47,7 @@ Let us consider a normal RGB image. Each pixel has 3 components : red, green and
 
 The difference between 2 adjacent pixels will most likely be more than +/- 1, even if many pixels have the same color.
 
-Let denote pixel p1(r,g,b) and pixel p2(r+/-1, g+/-1, b+/-1). These pixels are called "neighbours". A normal image contains 4-5 neighbours colours for each pixel on average. LSB embedding produces up to 7 neighbours colours for every colours in the image. Some steganographic techniques increment or decrement LSB, producing up to 26 neighbours for each modified pixel.
+Let denote pixel p1(r,g,b) and pixel p2(r+/-1, g+/-1, b+/-1). These pixels are called "neighbours". A normal image contains 4-5 neighbours colours for each pixel on average. LSB embedding produces up to 7 neighbours colours for every colours in the image. Some steganographic techniques increment or decrement LSB, producing up to 26 neighbours for each modified pixel :
 
 ||(r − 1, g − 1, b − 1)||(r, g − 1, b − 1)||(r + 1,   g − 1,   b − 1)||
 ||(r − 1, g − 1, b)    ||(r, g − 1, b)    ||(r + 1,   g − 1,   b)    ||
@@ -59,7 +59,9 @@ Let denote pixel p1(r,g,b) and pixel p2(r+/-1, g+/-1, b+/-1). These pixels are c
 ||(r − 1, g + 1, b)    ||(r, g + 1, b)    ||(r + 1,   g + 1,   b)    ||
 ||(r − 1, g + 1, b + 1)||(r, g + 1, b + 1)||(r + 1,   g + 1,   b + 1)||
 
+http://simple-steganalysis-suite.googlecode.com/svn/wiki/images/neighbourhood.png
 
+Neighbourhood histogram of a normal image (top) and steganogram with 40 KB embedded (bottom)
 == Pixel Difference Histogram ==
 
 
