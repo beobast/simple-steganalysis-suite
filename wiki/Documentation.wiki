@@ -43,6 +43,8 @@ Chi-Square attack from bottom to top
 
 == Neighbourhood Histogram ==
 
+Let us consider a normal RGB image. Each pixel has 3 components : red, green and blue. There are (2^8*2^8*2^8) = 2^24 = 16.7M possible colors. A true image does not contain all possible colors, this would require at least 16.7M pixels.
+
 
 == Pixel Difference Histogram ==
 
