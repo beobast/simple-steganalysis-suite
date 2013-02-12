@@ -14,6 +14,7 @@
  * http://mips.changwon.ac.kr/research/sem_data/Reliable_Detection_of_LSB_Steganography_Based.pdf
  * 
  * My implementation does not seem to work properly
+ * The resulting p-value seems strange
  * Need to be modified
  */
 
@@ -30,6 +31,8 @@ public class DifferenceHistogramAttack {
 	
 	private int[] g = new int[7]; //histogram g from -3 to +3
 	private int[] h = new int[7]; //histogram h from -3 to +3
+	
+	private double result;
 	
 	public DifferenceHistogramAttack(BufferedImage image)
 	{
@@ -63,36 +66,36 @@ public class DifferenceHistogramAttack {
 				if( (i+1) < width)
 				{
 					red = new Color(image.getRGB(i,j)).getRed();
-					green = new Color(image.getRGB(i,j)).getGreen();
-					blue = new Color(image.getRGB(i,j)).getBlue();
+					/*green = new Color(image.getRGB(i,j)).getGreen();
+					blue = new Color(image.getRGB(i,j)).getBlue();*/
 					
 					red2 = new Color(image.getRGB(i+1,j)).getRed();
-					green2 = new Color(image.getRGB(i+1,j)).getGreen();
-					blue2 = new Color(image.getRGB(i+1,j)).getBlue();
+					/*green2 = new Color(image.getRGB(i+1,j)).getGreen();
+					blue2 = new Color(image.getRGB(i+1,j)).getBlue();*/
 					
 					redDiff = red - red2;
-					greenDiff = green - green2;
-					blueDiff = blue - blue2;
+					/*greenDiff = green - green2;
+					blueDiff = blue - blue2;*/
 					
 					h2[redDiff+255]++;
-					h2[greenDiff+255]++;
-					h2[blueDiff+255]++;
+					/*h2[greenDiff+255]++;
+					h2[blueDiff+255]++;*/
 					
 					red = new Color(image.getRGB(i,j)).getRed() & 0xFE;
-					green = new Color(image.getRGB(i,j)).getGreen() & 0xFE;
-					blue = new Color(image.getRGB(i,j)).getBlue() & 0xFE;
+					/*reen = new Color(image.getRGB(i,j)).getGreen() & 0xFE;
+					blue = new Color(image.getRGB(i,j)).getBlue() & 0xFE;*/
 					
 					red2 = new Color(image.getRGB(i+1,j)).getRed() & 0xFE;
-					green2 = new Color(image.getRGB(i+1,j)).getGreen() & 0xFE;
-					blue2 = new Color(image.getRGB(i+1,j)).getBlue() & 0xFE;
+					/*green2 = new Color(image.getRGB(i+1,j)).getGreen() & 0xFE;
+					blue2 = new Color(image.getRGB(i+1,j)).getBlue() & 0xFE;*/
 					
 					redDiff = red - red2;
-					greenDiff = green - green2;
-					blueDiff = blue - blue2;
+					/*greenDiff = green - green2;
+					blueDiff = blue - blue2;*/
 					
 					g2[redDiff+255]++;
-					g2[greenDiff+255]++;
-					g2[blueDiff+255]++;
+					/*g2[greenDiff+255]++;
+					g2[blueDiff+255]++;*/
 					
 				}
 			}
@@ -115,7 +118,7 @@ public class DifferenceHistogramAttack {
 	private void computeCoefficients()
 	{
 		double p1, p2;
-		double result, result0, result1, result2;
+		double result0, result1, result2;
 		double a, b, c;
 		double d1, d2, d3;
 		double alpha, beta, gamma, delta;
@@ -152,12 +155,12 @@ public class DifferenceHistogramAttack {
 		}
 		else if(delta == 0)
 		{
-			result0 = (double)-b/2*a;
+			result0 = (double)-b/(2*a);
 		}
 		else
 		{
-			p1 = (double)(-b+Math.sqrt(delta))/2*a;
-			p2 = (double)(-b-Math.sqrt(delta))/2*a;
+			p1 = (double)(-b+Math.sqrt(delta))/(2*a);
+			p2 = (double)(-b-Math.sqrt(delta))/(2*a);
 			
 			if(Math.abs(p1) < Math.abs(p2))
 			{
@@ -179,10 +182,10 @@ public class DifferenceHistogramAttack {
 		d3 = beta - gamma;
 		
 		a = 2*d1;
-		b = d3-4*d1-d2;
+		b = d3-(4*d1)-d2;
 		c = 2*d2;
 		
-		delta = Math.pow(b, 2) - 4*a*c;
+		delta = Math.pow(b, 2) - (4*a*c);
 		
 		if(delta < 0)
 		{
@@ -190,12 +193,12 @@ public class DifferenceHistogramAttack {
 		}
 		else if(delta == 0)
 		{
-			result1 = (double)-b/2*a;
+			result1 = (double)-b/(2*a);
 		}
 		else
 		{
-			p1 = (double)(-b+Math.sqrt(delta))/2*a;
-			p2 = (double)(-b-Math.sqrt(delta))/2*a;
+			p1 = (double)(-b+Math.sqrt(delta))/(2*a);
+			p2 = (double)(-b-Math.sqrt(delta))/(2*a);
 			
 			if(Math.abs(p1) < Math.abs(p2))
 			{
@@ -218,10 +221,10 @@ public class DifferenceHistogramAttack {
 		d3 = beta - gamma;
 		
 		a = 2*d1;
-		b = d3-4*d1-d2;
+		b = d3-(4*d1)-d2;
 		c = 2*d2;
 		
-		delta = Math.pow(b, 2) - 4*a*c;
+		delta = Math.pow(b, 2) - (4*a*c);
 		
 		if(delta < 0)
 		{
@@ -229,12 +232,12 @@ public class DifferenceHistogramAttack {
 		}
 		else if(delta == 0)
 		{
-			result2 = (double)-b/2*a;
+			result2 = (double)-b/(2*a);
 		}
 		else
 		{
-			p1 = (double)(-b+Math.sqrt(delta))/2*a;
-			p2 = (double)(-b-Math.sqrt(delta))/2*a;
+			p1 = (double)(-b+Math.sqrt(delta))/(2*a);
+			p2 = (double)(-b-Math.sqrt(delta))/(2*a);
 			
 			if(Math.abs(p1) < Math.abs(p2))
 			{
@@ -248,10 +251,14 @@ public class DifferenceHistogramAttack {
 		
 		//Final result
 		result = (double)(result0 + result1 + result2)/3.0;
-		System.out.println("result = "+result);
 	}
 	
-	public void test()
+	public double getResult()
+	{
+		return result;
+	}
+	
+	public void run()
 	{
 		computeHistograms();
 		computeCoefficients();

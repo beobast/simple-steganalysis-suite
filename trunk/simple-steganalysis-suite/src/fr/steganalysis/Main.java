@@ -38,9 +38,10 @@ public class Main {
 	
 	private BufferedImage image;
 	private ImagePanel imagePanel;
-	private ImagePanel resultImagePanel;
+	private ImagePanel lsbEnhancementPanel;
+	private ImagePanel pixelValuePanel;
 	private Plot2DPanel chiSquarePanel;
-	private Plot2DPanel neighboursPanel;
+	private Plot2DPanel neighbourhoodPanel;
 	private Plot2DPanel differenceHistogram;
 
 	/**
@@ -107,6 +108,21 @@ public class Main {
         imagePanel.setVisible(true);
         //frmSteganalysis.pack();
 	}
+	
+	/**
+	 * Check if an image is opened
+	 */
+	public boolean checkImage()
+	{
+		if(image == null)
+		{
+            JOptionPane.showMessageDialog(frmSteganalysis,
+                    "Open an image first.",
+                    "Error",
+                    JOptionPane.ERROR_MESSAGE);
+		}
+		return (image != null);
+	}
 
 	/**
 	 * Initialize the contents of the frame.
@@ -129,16 +145,20 @@ public class Main {
 		JScrollPane scroller = new JScrollPane(imagePanel);
 		tabbedPane.addTab("Image", scroller);
 		
-		resultImagePanel = new ImagePanel();		
-		JScrollPane scroller2 = new JScrollPane(resultImagePanel);
+		lsbEnhancementPanel = new ImagePanel();		
+		JScrollPane scroller2 = new JScrollPane(lsbEnhancementPanel);
 		tabbedPane.addTab("LSB Enhancement", scroller2);
 		
+		pixelValuePanel = new ImagePanel();		
+		JScrollPane scroller3 = new JScrollPane(pixelValuePanel);
+		tabbedPane.addTab("Pixel Value", scroller3);
+		
 		chiSquarePanel = new Plot2DPanel();	
-		neighboursPanel = new Plot2DPanel();
+		neighbourhoodPanel = new Plot2DPanel();
 		differenceHistogram = new Plot2DPanel();
 		
 		tabbedPane.addTab("Chi-Square", null, chiSquarePanel, null);		
-		tabbedPane.addTab("Neighbours", null, neighboursPanel, null);
+		tabbedPane.addTab("Neighbourhood Histogram", null, neighbourhoodPanel, null);
 		tabbedPane.addTab("Pixel Difference Histogram", null, differenceHistogram, null);
 
 		/* Menu */
@@ -176,11 +196,14 @@ public class Main {
 		JMenuItem mntmDifferenceHistogram = new JMenuItem("Difference Histogram");
 		mnAttack.add(mntmDifferenceHistogram);
 		
+		JMenuItem mntmPrimarySets = new JMenuItem("Primary Sets");
+		mnAttack.add(mntmPrimarySets);
+		
 		JMenu mnHistograms = new JMenu("Histograms");
 		menuBar.add(mnHistograms);
 		
-		JMenuItem mntmNeighborHistogram = new JMenuItem("Neighbor Histogram");
-		mnHistograms.add(mntmNeighborHistogram);
+		JMenuItem mntmNeighbourhoodHistogram = new JMenuItem("Neighbourhood Histogram");
+		mnHistograms.add(mntmNeighbourhoodHistogram);
 		
 		JMenuItem mntmPixelDifferenceHistogram = new JMenuItem("Pixel Difference Histogram");
 		mnHistograms.add(mntmPixelDifferenceHistogram);
@@ -257,93 +280,143 @@ public class Main {
 		mntmLsbEnhancement.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseReleased(MouseEvent arg0) {
-				resultImagePanel.setImage(LsbEnhancement.lsbEnhancementAttack(image));
+				if(checkImage())
+				{
+					lsbEnhancementPanel.setImage(LsbEnhancement.lsbEnhancementAttack(image));
+				}			
 			}
 		});
 		
 		mntmPixelValue.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseReleased(MouseEvent arg0) {
-				resultImagePanel.setImage(PixelValue.pixelValueAttack(image));
+				if(checkImage())
+				{
+					pixelValuePanel.setImage(PixelValue.pixelValueAttack(image));
+				}			
 			}
 		});
 		
 		mntmChisquare.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseReleased(MouseEvent arg0) {
-				String orientation = getSelection(groupOrientation).getText();
-				int size = Integer.parseInt(getSelection(groupBlockSize).getText());
-				int nbBlocks = ((3*image.getWidth()*image.getHeight())/size) - 1;
-				double[] x = new double[nbBlocks];
-				double[] chi = new double[nbBlocks];
-				double[] averageLSB = new double[nbBlocks];
-				
-				if(orientation.equals("Top to Bottom"))
+				if(checkImage())
 				{
-					AverageLsb.averageLsbAttackTopToBottom(image, x, averageLSB, size);
-					ChiSquare.chiSquareAttackTopToBottom(image, x, chi, size);
+					String orientation = getSelection(groupOrientation).getText();
+					int size = Integer.parseInt(getSelection(groupBlockSize).getText());
+					int nbBlocks = ((3*image.getWidth()*image.getHeight())/size) - 1;
+					double[] x = new double[nbBlocks];
+					double[] chi = new double[nbBlocks];
+					double[] averageLSB = new double[nbBlocks];
+					
+					if(orientation.equals("Top to Bottom"))
+					{
+						AverageLsb.averageLsbAttackTopToBottom(image, x, averageLSB, size);
+						ChiSquare.chiSquareAttackTopToBottom(image, x, chi, size);
+					}
+					else if(orientation.equals("Left to Right"))
+					{
+						AverageLsb.averageLsbAttackLeftToRight(image, x, averageLSB, size);
+						ChiSquare.chiSquareAttackLeftToRight(image, x, chi, size);
+					}
+					else if(orientation.equals("Bottom to Top")) 
+					{
+						AverageLsb.averageLsbAttackBottomToTop(image, x, averageLSB, size);
+						ChiSquare.chiSquareAttackBottomToTop(image, x, chi, size);
+					}
+					else 
+					{
+						AverageLsb.averageLsbAttackRightToLeft(image, x, averageLSB, size);
+						ChiSquare.chiSquareAttackRightToLeft(image, x, chi, size);
+					}
+					
+					chiSquarePanel.removeAllPlots();
+					chiSquarePanel.addScatterPlot("Average LSB", x, averageLSB);
+					BaseLabel title = new BaseLabel("Chi-Square and Average LSB",null, 0.5, 1.1);
+					title.setFont(new Font("Courier", Font.BOLD, 20));
+					chiSquarePanel.addPlotable(title);
+					chiSquarePanel.addLinePlot("Chi-Square", x, chi);
+					chiSquarePanel.addLegend("EAST");
+					chiSquarePanel.setAxisLabel(0, size+"-byte data block");
+					chiSquarePanel.setAxisLabel(1, "Average LSB value (blue)\np-value of Chi-Square test (red)");
 				}
-				else if(orientation.equals("Left to Right"))
-				{
-					AverageLsb.averageLsbAttackLeftToRight(image, x, averageLSB, size);
-					ChiSquare.chiSquareAttackLeftToRight(image, x, chi, size);
-				}
-				else if(orientation.equals("Bottom to Top")) 
-				{
-					AverageLsb.averageLsbAttackBottomToTop(image, x, averageLSB, size);
-					ChiSquare.chiSquareAttackBottomToTop(image, x, chi, size);
-				}
-				else 
-				{
-					AverageLsb.averageLsbAttackRightToLeft(image, x, averageLSB, size);
-					ChiSquare.chiSquareAttackRightToLeft(image, x, chi, size);
-				}
-				
-				chiSquarePanel.removeAllPlots();
-				chiSquarePanel.addScatterPlot("Average LSB", x, averageLSB);
-				BaseLabel title = new BaseLabel("Chi-Square and Average LSB",null, 0.5, 1.1);
-				title.setFont(new Font("Courier", Font.BOLD, 20));
-				chiSquarePanel.addPlotable(title);
-				chiSquarePanel.addLinePlot("Chi-Square", x, chi);
-				chiSquarePanel.addLegend("EAST");
-				chiSquarePanel.setAxisLabel(0, size+"-byte data block");
-				chiSquarePanel.setAxisLabel(1, "Average LSB value (blue)\np-value of Chi-Square test (red)");
 			}
 		});
 		
 		mntmDifferenceHistogram.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseReleased(MouseEvent arg0) {
-				DifferenceHistogramAttack d = new DifferenceHistogramAttack(image);
-				d.test();
+				if(checkImage())
+				{
+					DifferenceHistogramAttack d = new DifferenceHistogramAttack(image);
+					d.run();
+					JOptionPane.showMessageDialog(frmSteganalysis,
+		                    "p = "+d.getResult(),
+		                    "Result",
+		                    JOptionPane.INFORMATION_MESSAGE);
+				}
 			}
 		});
 		
 		mntmPixelDifferenceHistogram.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseReleased(MouseEvent arg0) {
-				double[] x = new double[511];
-				double[] y = new double[511];
-				PixelDifferenceHistogram.histogram(image, x, y);
-				differenceHistogram.removeAllPlots();
-				differenceHistogram.addBarPlot("Pixel Difference Histogram", x, y);
+				if(checkImage())
+				{
+					double[] x = new double[511];
+					double[] y = new double[511];
+					PixelDifferenceHistogram.histogram(image, x, y);
+					differenceHistogram.removeAllPlots();
+					differenceHistogram.addBarPlot("Pixel Difference Histogram", x, y);
+					differenceHistogram.setAxisLabel(0, "Pixel Difference");
+					differenceHistogram.setAxisLabel(1, "Frequency");
+					BaseLabel title = new BaseLabel("Pixel Difference Histogram",null, 0.5, 1.1);
+					title.setFont(new Font("Courier", Font.BOLD, 20));
+					differenceHistogram.addPlotable(title);
+				}
 			}
 		});
 		
-		mntmNeighborHistogram.addMouseListener(new MouseAdapter() {
+		mntmNeighbourhoodHistogram.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseReleased(MouseEvent arg0) {
-				double[] x = new double[27];
-				double[] y = new double[27];
-				NeighbourhoodHistogram.neighborHistogramAttack(image, x, y);
-				neighboursPanel.removeAllPlots();
-				neighboursPanel.addBarPlot("Neighbourhood Histogram", x, y);
-				neighboursPanel.addLegend("SOUTH");
-				neighboursPanel.setAxisLabel(0, "Neighbours");
-				neighboursPanel.setAxisLabel(1, "Frequency");
-				BaseLabel title = new BaseLabel("Neighbourhood Histogram",null, 0.5, 1.1);
-				title.setFont(new Font("Courier", Font.BOLD, 20));
-				neighboursPanel.addPlotable(title);	
+				if(checkImage())
+				{
+					double[] x = new double[27];
+					double[] y = new double[27];
+					double total = 0, average = 0;
+					
+					NeighbourhoodHistogram.neighborHistogramAttack(image, x, y);
+					for(int i=0; i<27; i++)
+					{
+						average += i*y[i];
+						total += y[i];
+					}
+					average = average/total;
+					System.out.println("average = "+average);
+					neighbourhoodPanel.removeAllPlots();
+					neighbourhoodPanel.addBarPlot("Neighbours", x, y);
+					neighbourhoodPanel.setAxisLabel(0, "Neighbours");
+					neighbourhoodPanel.setAxisLabel(1, "Frequency");
+					BaseLabel title = new BaseLabel("Neighbourhood Histogram\nAverage : "+average,null, 0.5, 1.1);
+					title.setFont(new Font("Courier", Font.BOLD, 20));
+					neighbourhoodPanel.addPlotable(title);	
+				}
+			}
+		});
+		
+		mntmPrimarySets.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseReleased(MouseEvent arg0) {
+				if(checkImage())
+				{
+					PrimarySets p = new PrimarySets(image);
+					p.run();
+					JOptionPane.showMessageDialog(frmSteganalysis,
+		                    "p = "+p.getResult(),
+		                    "Result",
+		                    JOptionPane.INFORMATION_MESSAGE);				
+				}
 			}
 		});
 			
