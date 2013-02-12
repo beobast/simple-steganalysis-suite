@@ -19,7 +19,11 @@ Just extract the LSB of each pixel (or LSB of red, green and blue value for RGB 
  * If LSB = 1 then set pixel value to 255
  * If LSB = 0 then set pixel value to 0
 
-http://simple-steganalysis-suite.googlecode.com/svn/wiki/lena512.jpg
+http://code.google.com/p/simple-steganalysis-suite/svn/wiki/images/lena512.jpg
+Stego image
+
+http://code.google.com/p/simple-steganalysis-suite/svn/wiki/images/lena_lsb.png
+LSB Enhancement result
 
 == Chi-Square Attack ==
 
