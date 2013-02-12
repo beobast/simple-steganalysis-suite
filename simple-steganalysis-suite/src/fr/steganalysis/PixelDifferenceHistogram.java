@@ -1,11 +1,18 @@
 /*
  * Simple pixel difference histogram
+ * 
+ * Denote the intensity value of the image I at the position (i,j) as I(i,j), 
+ * and the difference image is defined as D(i,j) = I(i,j) - I(i,j+1). 
+ * The difference image histogram is defined as the histogram of the difference image D. 
+ * It is generally believed that the difference image follows a generalized Gaussian distribution.
  */
 
 package fr.steganalysis;
 
 import java.awt.Color;
 import java.awt.image.BufferedImage;
+
+import javax.swing.JFrame;
 
 public class PixelDifferenceHistogram {
 	
