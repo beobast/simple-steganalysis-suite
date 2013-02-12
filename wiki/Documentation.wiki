@@ -31,7 +31,7 @@ LSB Enhancement result
 
 The most famous statistical attack, described in :
 
-_Attacks on Steganographic Systems by Andreas Westfeld and Andreas Pfitzmann_
+_[http://simple-steganalysis-suite.googlecode.com/svn/wiki/articles/Attacks_on_Steganographic_Systems.pdf Attacks on Steganographic Systems by Andreas Westfeld and Andreas Pfitzmann]_
 
 http://simple-steganalysis-suite.googlecode.com/svn/wiki/images/lsbEnhancement.png
 
@@ -62,6 +62,10 @@ Let denote pixel p1(r,g,b) and pixel p2(r+/-1, g+/-1, b+/-1). These pixels are c
 http://simple-steganalysis-suite.googlecode.com/svn/wiki/images/neighbourhood.png
 
 Neighbourhood histogram of a normal image (top) and steganogram with 40 KB embedded (bottom)
+
+Source : _[http://simple-steganalysis-suite.googlecode.com/svn/wiki/articles/Detecting_Low_Embedding_Rates.pdf Detecting Low Embedding Rates by Andreas Westfeld]_
+
+
 == Pixel Difference Histogram ==
 
 
