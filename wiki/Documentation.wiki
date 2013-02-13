@@ -38,7 +38,7 @@ _[http://simple-steganalysis-suite.googlecode.com/svn/wiki/articles/Attacks_on_S
 
 http://simple-steganalysis-suite.googlecode.com/svn/wiki/images/lsbEnhancement.png
 
-Stego image(left)and LSB Enhancement result (right)
+Stego image (left) and LSB Enhancement result (right)
 
 http://simple-steganalysis-suite.googlecode.com/svn/wiki/images/chiSquare.png
 
