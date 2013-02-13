@@ -26,7 +26,7 @@ Stego image
 
 http://simple-steganalysis-suite.googlecode.com/svn/wiki/images/lena_lsb.png
 
-LSB Enhancement result
+LSB Enhancement result (embedding rate : 50%)
 
 
 
@@ -42,7 +42,7 @@ Stego image(left)and LSB Enhancement result (right)
 
 http://simple-steganalysis-suite.googlecode.com/svn/wiki/images/chiSquare.png
 
-Chi-Square attack from bottom to top
+Chi-Square attack from bottom to top (Chi-Square p-value in red, average LSB in blue)
 
 
 
