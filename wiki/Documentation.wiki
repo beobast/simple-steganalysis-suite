@@ -111,7 +111,7 @@ where γ = |W| + |Z| = |W| + |Z|. The above equation allows one to estimate p,
 
 Sources :
 
-[S. Dumitrescu, X. Wu, and N. Memon, “On steganalysis of random lsb embedding in continuous-tone images,” IEEE International Conference on Image Processing, ROchester, New York., September 2002. http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.95.3066&rep=rep1&type=pdf]
+[http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.95.3066&rep=rep1&type=pdf S. Dumitrescu, X. Wu, and N. Memon, “On steganalysis of random lsb embedding in continuous-tone images,” IEEE International Conference on Image Processing, ROchester, New York., September 2002.]
 
 [http://www.ims.nus.edu.sg/Programs/imgsci/files/memon/sing_stego.pdf Image Steganography and Steganalysis : Concepts and Practice (presentation)]
 
