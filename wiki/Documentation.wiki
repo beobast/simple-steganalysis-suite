@@ -76,3 +76,35 @@ Source : _[http://simple-steganalysis-suite.googlecode.com/svn/wiki/articles/Det
 
 
 == Primary Sets ==
+
+* This technique is based on statistics of sets defined on neighboring pixel pairs.
+* Some of these sets have equal expected cardinalities, if the pixels pairs are drawn from a continuous tone-image.
+* Random LSB flipping causes transitions between the sets with given probabilities, and alter the statistical relations between their cardinalities.
+* Analysis leads to a quadratic equation to estimate the embedding message length with high precision.
+
+Consider the partition of an image into pairs of horizontally adjacent pixels.
+Let P be the set of all these pixel pairs. Define the subsets X, Y and Z of P as
+follows:
+* X is the set of pairs (u, v) ∈ P such that v is even and u < v, or v is odd and u > v.
+* Y is the set of pairs (u, v) ∈ P such that v is even and u > v, or v is odd and u < v.
+* Z is the subset of pairs (u, v) ∈ P such that u = v.
+
+
+After having made the above definitions, the authors make the assumption that statistically we will have |X| = |Y |. (5)
+This assumption is true for natural images as the gradient of intensity function in any direction is equally likely to be positive or negative.
+
+
+Furthermore, they partition the set Y into two subsets W and V , with W
+being the set of pairs in P of the form (2k, 2k+1) or (2k+1, 2k), and V = Y −W.
+Then P = X ∪W ∪ V ∪ Z. They call sets X, V , W and Z as primary sets.
+
+
+When LSB embedding is done pixel values get modified and so does the
+membership of pixel pairs in the primary sets. More specifically, given a pixel pair (u, v), they identify the following four situations:
+* both values u and v remain unmodified;
+* only v is modified;
+* only u is modified;
+* both u and v are modified.
+
+By some simple algebraic manipulations, the authors finally arrive at the equation 0.5γp2 + (2|X| − |P|)p + |Y| − |X| = 0. (6)
+where γ = |W| + |Z| = |W| + |Z|. The above equation allows one to estimate p, i.e the length of the embedded message, based on X, Y , W, Zwhich can all be measured from the image being examined for possible steganography. Of course it should be noted that we cannot have γ = 0, the probability of which for natural images is very small.
