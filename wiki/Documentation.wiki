@@ -13,7 +13,7 @@ First open an image by clicking "File -> Open Image"
 
 The most famous visual attack, described in :
 
-_[http://simple-steganalysis-suite.googlecode.com/svn/wiki/articles/Attacks_on_Steganographic_Systems.pdf Attacks on Steganographic Systems by Andreas Westfeld and Andreas Pfitzmann]_
+_[http://simple-steganalysis-suite.googlecode.com/svn/wiki/articles/Attacks_on_Steganographic_Systems.pdf A. Westfeld, A. Pfitzmann, Attacks on steganographic systems, in: Information Hiding, LNCS, vol. 1768, Springer-Verlag, Heidelberg, 1999]_
 
 Just extract the LSB of each pixel (or LSB of red, green and blue value for RGB images).
 
@@ -34,7 +34,7 @@ LSB Enhancement result (embedding rate : 50%)
 
 The most famous statistical attack, described in :
 
-_[http://simple-steganalysis-suite.googlecode.com/svn/wiki/articles/Attacks_on_Steganographic_Systems.pdf Attacks on Steganographic Systems by Andreas Westfeld and Andreas Pfitzmann]_
+_[http://simple-steganalysis-suite.googlecode.com/svn/wiki/articles/Attacks_on_Steganographic_Systems.pdf A. Westfeld, A. Pfitzmann, Attacks on steganographic systems, in: Information Hiding, LNCS, vol. 1768, Springer-Verlag, Heidelberg, 1999]_
 
 http://simple-steganalysis-suite.googlecode.com/svn/wiki/images/lsbEnhancement.png
 
@@ -69,7 +69,7 @@ http://simple-steganalysis-suite.googlecode.com/svn/wiki/images/neighbourhood.pn
 
 Neighbourhood histogram of a normal image (top) and steganogram with 40 KB embedded (bottom)
 
-Source : _[http://simple-steganalysis-suite.googlecode.com/svn/wiki/articles/Detecting_Low_Embedding_Rates.pdf Detecting Low Embedding Rates by Andreas Westfeld]_
+Source : _[http://simple-steganalysis-suite.googlecode.com/svn/wiki/articles/Detecting_Low_Embedding_Rates.pdf A.Westfeld, Detecting low embedding rates, in: F.A.P. Petitcolas (Ed.), Information Hiding. 5th InternationalWorkshop, IH 2002 Noordwijkerhout, The Netherlands, October 7–9, 2002, Springer-Verlag, Berlin, 2003]_
 
 
 == Pixel Difference Histogram ==
@@ -113,6 +113,7 @@ Sources :
 
 [http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.95.3066&rep=rep1&type=pdf S. Dumitrescu, X. Wu, and N. Memon, “On steganalysis of random lsb embedding in continuous-tone images,” IEEE International Conference on Image Processing, ROchester, New York., September 2002.]
 
-[http://www.ims.nus.edu.sg/Programs/imgsci/files/memon/sing_stego.pdf Image Steganography and Steganalysis : Concepts and Practice (presentation)]
+Kharrazi, M., Sencar, H. T., and Memon, N. (2004). Image Steganography: Concepts and practice. In WSPC Lecture Notes Series
+[http://www.ims.nus.edu.sg/Programs/imgsci/files/memon/sing_stego.pdf (presentation)]
 
 [http://sharif.edu/~kharrazi/pubs/iwdw03.pdf Image Steganography and Steganalysis : Concepts and Practice (article)]
