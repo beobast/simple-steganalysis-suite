@@ -113,7 +113,5 @@ Sources :
 
 [http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.95.3066&rep=rep1&type=pdf S. Dumitrescu, X. Wu, and N. Memon, “On steganalysis of random lsb embedding in continuous-tone images,” IEEE International Conference on Image Processing, ROchester, New York., September 2002.]
 
-Kharrazi, M., Sencar, H. T., and Memon, N. (2004). Image Steganography: Concepts and practice. In WSPC Lecture Notes Series
-[http://www.ims.nus.edu.sg/Programs/imgsci/files/memon/sing_stego.pdf (presentation)]
 
-[http://sharif.edu/~kharrazi/pubs/iwdw03.pdf Image Steganography and Steganalysis : Concepts and Practice (article)]
+[http://sharif.edu/~kharrazi/pubs/iwdw03.pdf Kharrazi, M., Sencar, H. T., and Memon, N. (2004). Image Steganography: Concepts and practice. In WSPC Lecture Notes Series]
