@@ -78,8 +78,7 @@ Denote the intensity value of the image I at the position (i,j) as I(i,j), and t
 
 
 
-Source : [http://simple-steganalysis-suite.googlecode.com/svn/wiki/articles/Reliable_Detection_of_LSB_Steganography_Based_on_the_Difference_Image_Histogram.pdf Tao Z and Xijian P, (2003) “Reliable detection of lsb steganography based on the difference
-image histogram”, Proc. IEEE ICAAP, Part III, 2003]
+Source : _[http://simple-steganalysis-suite.googlecode.com/svn/wiki/articles/Reliable_Detection_of_LSB_Steganography_Based_on_the_Difference_Image_Histogram.pdf Tao Z and Xijian P, (2003) “Reliable detection of lsb steganography based on the difference image histogram”, Proc. IEEE ICAAP, Part III, 2003]_
 
 == Difference Image histogram ==
 
@@ -124,7 +123,7 @@ where γ = |W| + |Z| = |W| + |Z|. The above equation allows one to estimate p,
 
 Sources :
 
-[http://simple-steganalysis-suite.googlecode.com/svn/wiki/articles/On_Steganalysis_of_Random_LSB_Embedding_in_Continuous-tone_Images.pdf S. Dumitrescu, X. Wu, and N. Memon, “On steganalysis of random lsb embedding in continuous-tone images,” IEEE International Conference on Image Processing, ROchester, New York., September 2002.]
+_[http://simple-steganalysis-suite.googlecode.com/svn/wiki/articles/On_Steganalysis_of_Random_LSB_Embedding_in_Continuous-tone_Images.pdf S. Dumitrescu, X. Wu, and N. Memon, “On steganalysis of random lsb embedding in continuous-tone images,” IEEE International Conference on Image Processing, ROchester, New York., September 2002.]_
 
 
-[http://simple-steganalysis-suite.googlecode.com/svn/wiki/articles/Image_Steganography_and_Steganalysis_Concepts_and_Practice.pdf Rajarathnam Chandramouli, Mehdi Kharrazi, Nasir D. Memon: Image Steganography and Steganalysis: Concepts and Practice. IWDW 2003, Seoul, Korea]
+_[http://simple-steganalysis-suite.googlecode.com/svn/wiki/articles/Image_Steganography_and_Steganalysis_Concepts_and_Practice.pdf Rajarathnam Chandramouli, Mehdi Kharrazi, Nasir D. Memon: Image Steganography and Steganalysis: Concepts and Practice. IWDW 2003, Seoul, Korea]_
