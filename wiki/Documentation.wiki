@@ -72,20 +72,17 @@ Neighbourhood histogram of a normal image (top) and steganogram with 40 KB embed
 Source : _[http://simple-steganalysis-suite.googlecode.com/svn/wiki/articles/Detecting_Low_Embedding_Rates.pdf A.Westfeld, Detecting low embedding rates, in: F.A.P. Petitcolas (Ed.), Information Hiding. 5th InternationalWorkshop, IH 2002 Noordwijkerhout, The Netherlands, October 7–9, 2002, Springer-Verlag, Berlin, 2003]_
 
 
-== Pixel Difference Histogram ==
+== Pixel Difference Histogram and attack ==
 
 Denote the intensity value of the image I at the position (i,j) as I(i,j), and the difference image is defined as D(i,j)=I(i,j)-I(i,j+1). The difference image histogram is defined as the histogram of the difference image D. It is generally believed that the difference image follows a generalized Gaussian distribution.
 
-
-
-Source : _[http://simple-steganalysis-suite.googlecode.com/svn/wiki/articles/Reliable_Detection_of_LSB_Steganography_Based_on_the_Difference_Image_Histogram.pdf Tao Z and Xijian P, (2003) “Reliable detection of lsb steganography based on the difference image histogram”, Proc. IEEE ICAAP, Part III, 2003]_
-
-== Difference Image histogram ==
-
 http://simple-steganalysis-suite.googlecode.com/svn/wiki/images/lena_histogram.jpg
 
-== Difference histogram attack ==
+A  new  steganalytic  technique  based  on  the  difference image histogram aimed at LSB steganography is proposed. Translation    coefficients between difference image histograms are defined as a measure of the weak correlation between the least significant bit(LSB) plane and the remained bit planes, and then used to construct a
+classifier to discriminate the stego-image from the carrier-
+image. The algorithm can not only detect the existence of hidden  messages embedded using sequential or random LSB replacement in images reliably, but also estimate the amount of hidden messages exactly.  Experimental results show that for raw lossless compressed images the new algorithm had a better performance than the RS  analysis method and improves the computation speed significantly.
 
+Source : _[http://simple-steganalysis-suite.googlecode.com/svn/wiki/articles/Reliable_Detection_of_LSB_Steganography_Based_on_the_Difference_Image_Histogram.pdf Tao Z and Xijian P, (2003) “Reliable detection of lsb steganography based on the difference image histogram”, Proc. IEEE ICAAP, Part III, 2003]_
 
 == Primary Sets ==
 
