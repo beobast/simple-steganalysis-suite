@@ -74,6 +74,15 @@ Source : _[http://simple-steganalysis-suite.googlecode.com/svn/wiki/articles/Det
 
 == Pixel Difference Histogram ==
 
+Denote the intensity value of the image I at the position (i,j) as I(i,j), and the difference image is defined as D(i,j)=I(i,j)-I(i,j+1). The difference image histogram is defined as the histogram of the difference image D. It is generally believed that the difference image follows a generalized Gaussian distribution.
+
+
+
+Source : [http://mips.changwon.ac.kr/research/sem_data/Reliable_Detection_of_LSB_Steganography_Based.pdf Tao Z and Xijian P, (2003) “Reliable detection of lsb steganography based on the difference
+image histogram”, Proc. IEEE ICAAP, Part III, 2003]
+
+== Difference histogram attack ==
+
 
 == Primary Sets ==
 
