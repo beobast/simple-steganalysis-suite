@@ -110,5 +110,9 @@ By some simple algebraic manipulations, the authors finally arrive at the equati
 where γ = |W| + |Z| = |W| + |Z|. The above equation allows one to estimate p, i.e the length of the embedded message, based on X, Y , W, Z which can all be measured from the image being examined for possible steganography. Of course it should be noted that we cannot have γ = 0, the probability of which for natural images is very small.
 
 Sources :
+
+[S. Dumitrescu, X. Wu, and N. Memon, “On steganalysis of random lsb embedding in continuous-tone images,” IEEE International Conference on Image Processing, ROchester, New York., September 2002. http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.95.3066&rep=rep1&type=pdf]
+
 [http://www.ims.nus.edu.sg/Programs/imgsci/files/memon/sing_stego.pdf Image Steganography and Steganalysis : Concepts and Practice (presentation)]
+
 [http://sharif.edu/~kharrazi/pubs/iwdw03.pdf Image Steganography and Steganalysis : Concepts and Practice (article)]
