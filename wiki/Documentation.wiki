@@ -110,5 +110,5 @@ By some simple algebraic manipulations, the authors finally arrive at the equati
 where γ = |W| + |Z| = |W| + |Z|. The above equation allows one to estimate p, i.e the length of the embedded message, based on X, Y , W, Z which can all be measured from the image being examined for possible steganography. Of course it should be noted that we cannot have γ = 0, the probability of which for natural images is very small.
 
 Sources :
-[Image Steganography and Steganalysis : Concepts and Practice (slides) http://www.ims.nus.edu.sg/Programs/imgsci/files/memon/sing_stego.pdf]
-[Image Steganography and Steganalysis : Concepts and Practice (article) http://sharif.edu/~kharrazi/pubs/iwdw03.pdf]
+[http://www.ims.nus.edu.sg/Programs/imgsci/files/memon/sing_stego.pdf Image Steganography and Steganalysis : Concepts and Practice (presentation)]
+[http://sharif.edu/~kharrazi/pubs/iwdw03.pdf Image Steganography and Steganalysis : Concepts and Practice (article)]
