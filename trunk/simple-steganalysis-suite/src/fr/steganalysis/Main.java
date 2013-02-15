@@ -123,6 +123,23 @@ public class Main {
 		}
 		return (image != null);
 	}
+	
+	/**
+	 * Save image result
+	 */
+	public void saveResult(ImagePanel panel)
+	{
+		if(panel.getImage() == null)
+		{
+			JOptionPane.showMessageDialog(frmSteganalysis,
+                    "No image detected.",
+                    "Error",
+                    JOptionPane.ERROR_MESSAGE);
+            return;
+		}
+		File f = new File("result.png");
+		ImageFileManager.saveImage(panel.getImage(), f);
+	}
 
 	/**
 	 * Initialize the contents of the frame.
@@ -171,6 +188,12 @@ public class Main {
 		
 		JMenuItem mntmOpenImage = new JMenuItem("Open Image");
 		mnFile.add(mntmOpenImage);
+		
+		JMenuItem mntmSaveLsbEnhancement = new JMenuItem("Save LSB Enhancement result");
+		mnFile.add(mntmSaveLsbEnhancement);
+		
+		JMenuItem mntmSavePixelValue = new JMenuItem("Save Pixel Value result");
+		mnFile.add(mntmSavePixelValue);
 		
 		JMenu mnAttack = new JMenu("Attack");
 		menuBar.add(mnAttack);
@@ -276,6 +299,19 @@ public class Main {
 			}
 		});
 		
+		mntmSaveLsbEnhancement.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseReleased(MouseEvent arg0) {
+				saveResult(lsbEnhancementPanel);
+			}
+		});
+		
+		mntmSavePixelValue.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseReleased(MouseEvent arg0) {
+				saveResult(pixelValuePanel);
+			}
+		});
 		
 		mntmLsbEnhancement.addMouseListener(new MouseAdapter() {
 			@Override
@@ -393,8 +429,8 @@ public class Main {
 						total += y[i];
 					}
 					average = average/total;
-					System.out.println("average = "+average);
 					neighbourhoodPanel.removeAllPlots();
+					neighbourhoodPanel.removeAllPlotables();
 					neighbourhoodPanel.addBarPlot("Neighbours", x, y);
 					neighbourhoodPanel.setAxisLabel(0, "Neighbours");
 					neighbourhoodPanel.setAxisLabel(1, "Frequency");
