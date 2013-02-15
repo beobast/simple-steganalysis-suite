@@ -83,7 +83,7 @@ image histogram”, Proc. IEEE ICAAP, Part III, 2003]
 
 == Difference Image histogram ==
 
-http://simple-steganalysis-suite.googlecode.com/svn/wiki/images/lena-histogram.jpg
+http://simple-steganalysis-suite.googlecode.com/svn/wiki/images/lena_histogram.jpg
 
 == Difference histogram attack ==
 
